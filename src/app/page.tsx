@@ -15,6 +15,29 @@ import ContactForm from '@/components/ContactForm'
 import Footer from '@/components/Footer'
 import MobileBar from '@/components/MobileBar'
 import ScrollReveal from '@/components/ScrollReveal'
+
 export default function Home() {
-  return (<><Header /><main><Hero /><TrustBar /><EmergencyCTA /><Services /><Process /><EquipmentSection /><InsuranceSection /><TargetGroups /><BeforeAfterSection /><TrustSection /><RegionalSection /><FAQ /><ContactForm /></main><Footer /><MobileBar /><ScrollReveal /></>)
+  return (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <TrustBar />
+        <EmergencyCTA />
+        <Services />
+        <Process />
+        <EquipmentSection />
+        <InsuranceSection />
+        <TargetGroups />
+        <BeforeAfterSection />
+        <TrustSection />
+        <RegionalSection />
+        <FAQ />
+        <ContactForm />
+      </main>
+      <Footer />
+      <MobileBar />
+      <ScrollReveal />
+    </>
+  )
 }
