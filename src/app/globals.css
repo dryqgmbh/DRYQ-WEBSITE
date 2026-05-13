@@ -1,66 +1,122 @@
 @import "tailwindcss";
 
-/* ── Brand theme ── */
 @theme {
-  --color-green: #35D04F;
-  --color-green-dark: #28A83F;
-  --color-green-light: #E8F9EC;
-  --color-dark: #101820;
-  --color-anthracite: #20252B;
-  --color-muted: #667085;
-  --color-bg: #F6F8F7;
+  --color-ink:   #05070d;
+  --color-card:  #0b1120;
+  --color-line:  rgba(255,255,255,0.08);
+  --color-line2: rgba(255,255,255,0.14);
+  --color-fg:    #e8edf6;
+  --color-dim:   #9aa6bd;
+  --color-mute:  #6a778f;
+  --color-brand: #1F8BFF;
+  --color-mint:  #34D399;
+  --color-leaf:  #7BE36A;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
+
+* { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
 body {
-  background: #fff;
-  color: #101820;
-  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-sans);
+  color: var(--color-fg);
+  background:
+    radial-gradient(ellipse 1200px 700px at 15% -5%, rgba(31,139,255,0.20) 0%, transparent 60%),
+    radial-gradient(ellipse 900px 600px at 88% 8%,  rgba(123,227,106,0.12) 0%, transparent 55%),
+    #05070d;
+  min-height: 100dvh;
 }
 
-/* Grid pattern for hero */
-.hero-grid {
+::selection { background: rgba(31,139,255,0.35); color: #fff; }
+
+/* ── Utility classes ── */
+
+.glass {
+  background: linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015));
+  border: 1px solid var(--color-line);
+  backdrop-filter: blur(14px);
+}
+.glass-strong {
+  background: linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));
+  border: 1px solid var(--color-line2);
+  backdrop-filter: blur(20px);
+}
+
+.grid-bg {
   background-image:
-    linear-gradient(rgba(53,208,79,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(53,208,79,.04) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 55% at 50% 30%, #000 25%, transparent 72%);
 }
 
-/* Scroll reveal */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .65s ease, transform .65s ease;
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* FAQ accordion */
-.faq-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-.faq-body.open { max-height: 500px; }
-
-/* Before/After slider */
-.ba-slider { position: relative; overflow: hidden; cursor: col-resize; user-select: none; touch-action: none; }
-.ba-after { position: absolute; inset: 0; overflow: hidden; }
-.ba-handle { position: absolute; top: 0; bottom: 0; width: 3px; background: white; z-index: 20; transform: translateX(-50%); }
-.ba-handle-btn {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 44px; height: 44px;
-  background: white; border-radius: 50%;
-  box-shadow: 0 2px 20px rgba(0,0,0,.25);
-  display: flex; align-items: center; justify-content: center;
+.gradient-text {
+  background: linear-gradient(95deg,#fff 0%,#c5d4f1 50%,#7be36a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-/* Mobile CTA bar */
-.mobile-cta-bar {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  z-index: 100; display: flex;
-  border-top: 2px solid #35D04F;
-  padding-bottom: env(safe-area-inset-bottom);
+.chip {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .3rem .65rem;
+  border-radius: 999px;
+  font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+  color: #b9c6e0;
+  border: 1px solid var(--color-line2);
+  background: rgba(255,255,255,0.03);
 }
-@media (min-width: 768px) { .mobile-cta-bar { display: none; } }
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
-::-webkit-scrollbar-thumb { background: #35D04F; border-radius: 3px; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .68rem; letter-spacing: .24em; text-transform: uppercase; color: #8aa0c8;
+}
+.eyebrow::before {
+  content: ""; width: 14px; height: 1px;
+  background: linear-gradient(90deg,#1F8BFF,#7be36a);
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+  padding: .82rem 1.3rem; border-radius: 999px;
+  font-weight: 600; font-size: .9rem; color: #03102a;
+  background: linear-gradient(135deg,#7be36a 0%,#34D399 45%,#1F8BFF 100%);
+  box-shadow: 0 10px 40px -10px rgba(31,139,255,0.5), inset 0 1px 0 rgba(255,255,255,0.4);
+  transition: transform .2s, box-shadow .2s, filter .2s;
+  white-space: nowrap;
+}
+.btn-primary:hover { transform: translateY(-1px); filter: brightness(1.06); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+  padding: .82rem 1.15rem; border-radius: 999px;
+  font-weight: 500; font-size: .9rem; color: var(--color-fg);
+  border: 1px solid var(--color-line2); background: rgba(255,255,255,0.02);
+  transition: background .2s, border-color .2s;
+  white-space: nowrap;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.22); }
+
+/* ── Animations ── */
+@keyframes floatY    { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-10px)} }
+@keyframes floatYLg  { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-18px)} }
+.float-y   { animation: floatY   7s ease-in-out infinite; }
+.float-y-lg{ animation: floatYLg 9s ease-in-out infinite; }
+
+/* ── Reveal on scroll ── */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity .7s ease,transform .7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ── FAQ accordion ── */
+.faq-body { display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+.faq-body.open { grid-template-rows:1fr; }
+.faq-body > div { overflow:hidden; }
+
+/* ── Divider ── */
+.divider { height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.14),transparent); }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width:7px; }
+::-webkit-scrollbar-track { background:#060910; }
+::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.12); border-radius:99px; }

@@ -1,130 +1,64 @@
-import { ArrowRight, Phone, Check, Shield, Cpu, FileText, MapPin, Users } from 'lucide-react'
+import PhoneFrame from './PhoneFrame'
+import AppDashboard from './AppDashboard'
 
-const bullets = [
-  { icon: Shield, text: 'ISO 9001 zertifizierte Prozesse' },
-  { icon: Cpu, text: 'Eigene moderne Trocknungstechnik' },
-  { icon: FileText, text: 'Messprotokolle & Fotodokumentation' },
-  { icon: MapPin, text: 'Einsatzplanung im Rheinland' },
-  { icon: Users, text: 'Für Privatkunden, Verwaltungen & Gewerbe' },
-]
+function Chip({className='',title,value,delta,tone='ok'}:{className?:string;title:string;value:string;delta?:string;tone?:'ok'|'warn'|'info'}) {
+  const bar=tone==='ok'?'bg-[#7be36a]':tone==='warn'?'bg-[#f2b66b]':'bg-[#1F8BFF]'
+  return (
+    <div className={`glass-strong relative overflow-hidden rounded-2xl px-3.5 py-3 shadow-2xl ${className}`}>
+      <div className={`absolute left-0 top-3 bottom-3 w-[3px] rounded-r ${bar}`}/>
+      <div className="pl-2">
+        <div className="text-[9px] uppercase tracking-[0.18em] text-white/45">{title}</div>
+        <div className="mt-0.5 flex items-baseline gap-1.5">
+          <span className="text-[15px] font-semibold text-white tabular-nums">{value}</span>
+          {delta&&<span className="text-[10px] font-medium text-[#9be6a1]">{delta}</span>}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function Hero() {
   return (
-    <section className="relative bg-[#101820] hero-grid pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden">
-      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-[#35D04F]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+    <section id="top" className="relative overflow-hidden pt-32 pb-20 lg:pt-44 lg:pb-32">
+      <div className="absolute inset-0 -z-10 grid-bg"/>
+      <div className="pointer-events-none absolute left-1/2 -top-48 -z-10 h-[700px] w-[1400px] -translate-x-1/2 rounded-full opacity-50 blur-3xl" style={{background:'radial-gradient(closest-side,rgba(31,139,255,0.38),transparent 70%)'}}/>
+      <div className="pointer-events-none absolute right-[-200px] top-[180px] -z-10 h-[500px] w-[700px] rounded-full opacity-35 blur-3xl" style={{background:'radial-gradient(closest-side,rgba(74,222,128,0.32),transparent 70%)'}}/>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left */}
+      <div className="mx-auto max-w-[1200px] px-5 lg:px-8">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#35D04F]/10 border border-[#35D04F]/20 text-[#35D04F] text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
-              <span className="w-1.5 h-1.5 bg-[#35D04F] rounded-full animate-pulse" />
-              Schnelle Einsatzplanung im Rheinland
+            <div className="chip">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#7be36a] shadow-[0_0_0_4px_rgba(123,227,106,0.18)]"/>
+              Digital prevention platform
             </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.1rem] font-black text-white leading-[1.08] tracking-tight mb-6">
-              Wasserschaden?{' '}
-              <span className="text-[#35D04F]">DRYQ</span>{' '}
-              übernimmt Trocknung, Rückbau und Dokumentation.
+            <h1 className="mt-6 text-[2.6rem] font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[62px]">
+              <span className="gradient-text">Understand your health</span><br/>
+              <span className="text-white">before problems become visible.</span>
             </h1>
-
-            <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-8 max-w-xl">
-              Professionelle Wasserschadensanierung für Eigentümer, Hausverwaltungen und
-              Gewerbekunden – mit Leckortung, technischer Trocknung, eigener Gerätetechnik
-              und nachvollziehbarer Dokumentation für die Abstimmung mit Versicherung oder Verwaltung.
+            <p className="mt-6 max-w-xl text-[15.5px] leading-relaxed text-[var(--color-dim)] sm:text-[17px]">
+              Preventura combines at-home biomarker testing, lab-based analysis and a premium app experience — turning your blood values into a clear Health Score, prioritized insights and a personal retest plan.
             </p>
-
-            <ul className="grid sm:grid-cols-2 gap-2.5 mb-10">
-              {bullets.map(({ icon: Icon, text }) => (
-                <li key={text} className="flex items-center gap-2.5 text-sm text-gray-300">
-                  <span className="flex-shrink-0 w-5 h-5 bg-[#35D04F]/15 rounded-full flex items-center justify-center">
-                    <Check size={11} className="text-[#35D04F]" strokeWidth={3} />
-                  </span>
-                  {text}
-                </li>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#cta" className="btn-primary">Get Early Access <span aria-hidden>→</span></a>
+              <a href="#how" className="btn-ghost">See how it works</a>
+            </div>
+            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-[var(--color-mute)]">
+              {['At-home sample collection','Lab-based analysis','App-based insights'].map((t,i)=>(
+                <span key={t} className="inline-flex items-center gap-1.5">
+                  <span className={`h-1 w-1 rounded-full ${i===0?'bg-[#7be36a]':i===1?'bg-[#1F8BFF]':'bg-[#22D3EE]'}`}/>
+                  {t}
+                </span>
               ))}
-            </ul>
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a href="#kontakt"
-                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-[#35D04F] hover:bg-[#28A83F] text-white font-bold px-7 py-4 rounded-xl text-base transition-colors shadow-lg shadow-[#35D04F]/20">
-                Schaden melden
-                <ArrowRight size={16} />
-              </a>
-              <a href="tel:+492241000000"
-                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 border border-white/15 text-white font-bold px-7 py-4 rounded-xl text-base transition-colors">
-                <Phone size={15} className="text-[#35D04F]" />
-                Direkt anrufen
-              </a>
             </div>
           </div>
 
-          {/* Right — Dashboard visual */}
-          <div className="relative">
-            <div className="rounded-2xl overflow-hidden border border-white/8 bg-[#1A1F26] shadow-2xl">
-              {/* Replace with real image: <Image src="/assets/dryqtech-setup.jpg" alt="DRYQ Trocknungstechnik" fill className="object-cover" /> */}
-              <div className="aspect-[4/3] p-7 flex flex-col justify-between">
-                {/* Top row */}
-                <div className="flex items-start justify-between">
-                  <div className="bg-[#35D04F]/10 border border-[#35D04F]/15 rounded-xl p-4">
-                    <Cpu size={28} className="text-[#35D04F]" strokeWidth={1.3} />
-                  </div>
-                  <div className="text-right">
-                    <div className="text-xs text-gray-500 mb-0.5">Live-Feuchtemessung</div>
-                    <div className="text-2xl font-black text-white">68<span className="text-base font-normal text-gray-400">% rF</span></div>
-                    <div className="text-xs text-[#35D04F] mt-0.5">▼ Abnehmend</div>
-                  </div>
-                </div>
-
-                {/* Equipment grid */}
-                <div className="grid grid-cols-3 gap-3 my-5">
-                  {[
-                    { label: 'Luftentfeuchter', val: '2x' },
-                    { label: 'Turbogebläse', val: '4x' },
-                    { label: 'Air Scrubber', val: '1x' },
-                  ].map((eq) => (
-                    <div key={eq.label} className="bg-[#101820]/60 border border-white/6 rounded-xl p-3 text-center">
-                      <div className="text-[#35D04F] font-black text-lg">{eq.val}</div>
-                      <div className="text-[10px] text-gray-500 mt-0.5 leading-tight">{eq.label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Progress */}
-                <div className="bg-[#101820]/60 border border-white/6 rounded-xl p-4">
-                  <div className="flex justify-between text-xs mb-2">
-                    <span className="text-gray-400">Trocknungsfortschritt</span>
-                    <span className="text-[#35D04F] font-semibold">Tag 4 / 14</span>
-                  </div>
-                  <div className="h-2 bg-white/8 rounded-full overflow-hidden">
-                    <div className="h-full w-[28%] bg-linear-to-r from-[#35D04F] to-[#28A83F] rounded-full" />
-                  </div>
-                  <div className="flex justify-between text-[10px] text-gray-600 mt-1.5">
-                    <span>Start: 92 % rF</span><span>Ziel: ≤50 % rF</span>
-                  </div>
-                </div>
-
-                {/* Placeholder note */}
-                <p className="text-[10px] text-gray-700 italic text-center mt-3">
-                  {/* Echtes Bild: /assets/dryqtech-setup.jpg */}
-                  Echte Gerätebilder werden eingefügt
-                </p>
-              </div>
-            </div>
-
-            {/* ISO badge */}
-            <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl p-3 flex items-center gap-3 border border-gray-100">
-              {/* Replace with: <Image src="/assets/iso-9001-badge.png" alt="ISO 9001" width={40} height={40} /> */}
-              <div className="w-10 h-10 bg-[#1a3d8f] rounded-lg flex flex-col items-center justify-center flex-shrink-0">
-                <span className="text-white text-[8px] font-black">ISO</span>
-                <span className="text-white text-xs font-black leading-none">9001</span>
-              </div>
-              <div>
-                <div className="text-xs font-bold text-[#101820]">ISO 9001</div>
-                <div className="text-[10px] text-gray-500">Zertifizierte Prozesse</div>
-              </div>
-            </div>
+          <div className="relative mx-auto flex w-full max-w-[500px] items-center justify-center">
+            <div className="pointer-events-none absolute inset-0 -z-10 blur-3xl opacity-60" style={{background:'radial-gradient(closest-side,rgba(31,139,255,0.38),transparent 70%)'}}/>
+            <div className="float-y"><PhoneFrame width={306}><AppDashboard/></PhoneFrame></div>
+            <Chip className="absolute -left-4 top-10 w-[158px] float-y-lg" title="ApoB" value="102 mg/dl" delta="−8 vs last" tone="warn"/>
+            <Chip className="absolute -right-4 top-28 w-[160px] float-y" title="hs-CRP" value="0.7 mg/l" delta="optimal" tone="ok"/>
+            <Chip className="absolute -left-8 bottom-28 w-[165px] float-y" title="Vitamin D" value="32 ng/ml" delta="+8 vs last" tone="ok"/>
+            <Chip className="absolute -right-6 bottom-10 w-[170px] float-y-lg" title="Next retest" value="in 24 days" tone="info"/>
           </div>
         </div>
       </div>

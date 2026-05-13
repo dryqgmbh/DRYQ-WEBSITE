@@ -1,19 +1,19 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import TrustBar from '@/components/TrustBar'
-import EmergencyCTA from '@/components/EmergencyCTA'
-import Services from '@/components/Services'
-import Process from '@/components/Process'
-import EquipmentSection from '@/components/EquipmentSection'
-import InsuranceSection from '@/components/InsuranceSection'
-import TargetGroups from '@/components/TargetGroups'
-import BeforeAfterSection from '@/components/BeforeAfterSection'
-import TrustSection from '@/components/TrustSection'
-import RegionalSection from '@/components/RegionalSection'
+import ProblemSection from '@/components/ProblemSection'
+import HowItWorks from '@/components/HowItWorks'
+import CorePanel from '@/components/CorePanel'
+import AppShowcase from '@/components/AppShowcase'
+import ScoreSection from '@/components/ScoreSection'
+import TopImpactSection from '@/components/TopImpactSection'
+import RetestSection from '@/components/RetestSection'
+import ComparisonSection from '@/components/ComparisonSection'
+import CompaniesSection from '@/components/CompaniesSection'
+import TrustPillars from '@/components/TrustPillars'
 import FAQ from '@/components/FAQ'
-import ContactForm from '@/components/ContactForm'
+import FinalCTA from '@/components/FinalCTA'
 import Footer from '@/components/Footer'
-import MobileBar from '@/components/MobileBar'
 import ScrollReveal from '@/components/ScrollReveal'
 
 export default function Home() {
@@ -23,20 +23,20 @@ export default function Home() {
       <main>
         <Hero />
         <TrustBar />
-        <EmergencyCTA />
-        <Services />
-        <Process />
-        <EquipmentSection />
-        <InsuranceSection />
-        <TargetGroups />
-        <BeforeAfterSection />
-        <TrustSection />
-        <RegionalSection />
+        <ProblemSection />
+        <HowItWorks />
+        <CorePanel />
+        <AppShowcase />
+        <ScoreSection />
+        <TopImpactSection />
+        <RetestSection />
+        <ComparisonSection />
+        <CompaniesSection />
+        <TrustPillars />
         <FAQ />
-        <ContactForm />
+        <FinalCTA />
       </main>
       <Footer />
-      <MobileBar />
       <ScrollReveal />
     </>
   )

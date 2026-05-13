@@ -1,31 +1,18 @@
-import { ShieldCheck, Cpu, FileText, MapPin, Users } from 'lucide-react'
-
-const items = [
-  { Icon: ShieldCheck, title: 'ISO 9001', sub: 'Zertifizierte Prozesse' },
-  { Icon: Cpu, title: 'Eigene Trocknungstechnik', sub: 'DRYQTECH Geräte' },
-  { Icon: FileText, title: 'Messprotokoll & Fotodoku', sub: 'Versicherungsgerecht' },
-  { Icon: MapPin, title: 'Rheinland & Umgebung', sub: 'Schnelle Einsatzplanung' },
-  { Icon: Users, title: 'Privat & Gewerbe', sub: 'Verwaltungen & Versicherungen' },
-]
-
+const items=['At-home testing','Lab-based analysis','GDPR-conscious data','Clear app insights','Retest recommendations']
 export default function TrustBar() {
   return (
-    <section className="bg-white border-b border-gray-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 divide-x divide-gray-100">
-          {items.map(({ Icon, title, sub }) => (
-            <div key={title} className="flex items-center gap-3 py-5 px-4 sm:px-5 first:pl-0 last:pr-0">
-              <div className="w-9 h-9 bg-[#35D04F]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Icon size={18} className="text-[#35D04F]" strokeWidth={1.7} />
-              </div>
-              <div>
-                <div className="text-xs sm:text-sm font-bold text-[#101820] leading-snug">{title}</div>
-                <div className="text-[11px] text-gray-500 mt-0.5">{sub}</div>
-              </div>
-            </div>
+    <div className="border-y border-white/8 bg-white/[0.015]">
+      <div className="mx-auto max-w-[1200px] px-5 py-5 lg:px-8">
+        <div className="flex flex-wrap items-center justify-center gap-x-9 gap-y-3 text-[10.5px] uppercase tracking-[0.22em] text-[var(--color-mute)]">
+          {items.map((t,i)=>(
+            <span key={t} className="inline-flex items-center gap-2">
+              <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden><path d="M1.5 6 L4.5 9 L9.5 2" stroke="#7be36a" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              {t}
+              {i<items.length-1&&<span className="ml-7 hidden h-3 w-px bg-white/8 md:block"/>}
+            </span>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   )
 }

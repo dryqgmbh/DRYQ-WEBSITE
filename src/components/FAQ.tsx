@@ -1,53 +1,40 @@
 'use client'
-
 import { useState } from 'react'
-import { Plus, ArrowRight } from 'lucide-react'
-
-const faqs = [
-  { q: 'Was mache ich sofort bei einem Wasserschaden?', a: 'Stoppen Sie zunächst die Wasserzufuhr am Haupthahn. Achten Sie auf elektrische Sicherheit und schalten Sie Stromkreise ab, wenn Wasser mit Elektrik in Berührung kommen könnte. Dokumentieren Sie den Schaden mit Fotos, informieren Sie Ihre Versicherung oder Hausverwaltung und kontaktieren Sie einen Fachbetrieb.' },
-  { q: 'Muss nach einem Wasserschaden immer getrocknet werden?', a: 'Nicht zwingend in jedem Fall – aber wenn Feuchtigkeit in Bauteile wie Estrich, Dämmung, Wand- oder Deckenaufbauten eingedrungen ist, muss fachgerecht geprüft und in der Regel technisch getrocknet werden. Eine oberflächliche Trocknung reicht dann oft nicht aus und kann später zu Schimmelbildung führen.' },
-  { q: 'Wie lange dauert eine technische Trocknung?', a: 'Das ist abhängig vom Schadenbild, dem betroffenen Bauteil, der Durchfeuchtungstiefe und dem Aufbau. Häufig sind es mehrere Tage bis wenige Wochen. Eine seriöse Einschätzung ist nur nach einer Messung vor Ort möglich.' },
-  { q: 'Übernimmt die Versicherung die Kosten?', a: 'Das hängt vom Versicherungsvertrag und dem konkreten Schadenfall ab. DRYQ unterstützt mit nachvollziehbarer Dokumentation – Messprotokollen, Fotos, Leistungsnachweisen – für die weitere Abstimmung mit Ihrer Versicherung. Eine Kostenzusage kann DRYQ nicht machen.' },
-  { q: 'Was ist eine Estrichdämmschichttrocknung?', a: 'Dabei wird die Dämm- oder Hohlraumschicht unterhalb des Estrichs getrocknet, wenn dort Feuchtigkeit eingedrungen ist. Das erfolgt über spezielle Injektionssysteme, die trockene Luft gezielt in die Schicht einleiten. Diese Methode schont den Estrich und vermeidet oft den vollständigen Rückbau.' },
-  { q: 'Kann Schimmel entstehen?', a: 'Ja, wenn Feuchtigkeit zu lange in Bauteilen verbleibt. Schimmelpilze können sich bereits nach wenigen Tagen bei ungenügender Trocknung bilden. Deshalb sind schnelle Schadenaufnahme, fachgerechte Trocknung und Kontrolle durch Messungen wichtig.' },
-  { q: 'Arbeitet DRYQ auch für Hausverwaltungen?', a: 'Ja. DRYQ unterstützt Verwaltungen mit strukturierter Kommunikation, Terminabstimmung mit Mietern, Fotodokumentation, Messprotokollen und planbarer Schadenabwicklung.' },
-  { q: 'Bietet DRYQ auch Rückbau an?', a: 'Ja. Beschädigte oder nicht trocknungsfähige Bauteile können fachgerecht zurückgebaut werden, wenn das für die Sanierung notwendig ist.' },
+import Section from './Section'
+const faqs=[
+  {q:'Is Preventura a replacement for a doctor?',a:'No. Preventura is designed for prevention, tracking and health optimization. It does not replace medical diagnosis or treatment. For medical concerns, please consult a physician.'},
+  {q:'How does the at-home test work?',a:'You activate your kit in the app, collect a small capillary sample at home, send it to the lab in the prepaid envelope, and receive your results directly in the Preventura app.'},
+  {q:'What is the Preventura Score?',a:'The Preventura Score summarizes selected biomarker results into a clear, trackable signal and highlights where improvement potential exists. It is a structured insight, not a diagnosis.'},
+  {q:'Why retest?',a:'Single measurements are only a snapshot. Retesting helps you understand trends, confirm improvements and adjust your focus over time — which is where prevention actually happens.'},
+  {q:'Which biomarkers are included?',a:'Preventura Core focuses on key prevention markers across cardiovascular health, metabolism, inflammation, kidney, liver, thyroid and vitamin / mineral status. The exact panel may vary by market and laboratory setup.'},
+  {q:'Is my data secure?',a:'Health data is handled with a strong focus on privacy, security and GDPR-conscious processes. You stay in control of your data.'},
 ]
-
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(null)
+  const [open,setOpen]=useState<number|null>(0)
   return (
-    <section className="bg-white py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-16">
-          <div className="reveal">
-            <span className="text-xs font-semibold text-[#35D04F] uppercase tracking-widest">FAQ</span>
-            <h2 className="text-3xl md:text-4xl font-black text-[#101820] mt-2 mb-5">Häufige Fragen zu Wasserschäden.</h2>
-            <p className="text-gray-600 leading-relaxed mb-8">Antworten auf die wichtigsten Fragen rund um Wasserschadensanierung, Trocknung und Versicherungsabstimmung.</p>
-            <a href="#kontakt" className="inline-flex items-center gap-2 bg-[#35D04F] hover:bg-[#28A83F] text-white font-bold px-6 py-3.5 rounded-xl text-sm transition-colors">
-              Weitere Fragen? <ArrowRight size={14} />
-            </a>
-          </div>
-          <div className="space-y-3 reveal">
-            {faqs.map((f, i) => (
-              <div key={i} className="border border-gray-100 rounded-xl overflow-hidden bg-[#F6F8F7] hover:border-[#35D04F]/20 transition-colors">
-                <button className="w-full flex items-center justify-between gap-4 p-5 text-left"
-                  onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}>
-                  <span className="text-sm font-semibold text-[#101820]">{f.q}</span>
-                  <span className={`flex-shrink-0 w-6 h-6 rounded-full border border-gray-200 flex items-center justify-center transition-transform ${open === i ? 'rotate-45 border-[#35D04F] bg-[#35D04F]/10' : ''}`}>
-                    <Plus size={12} className="text-gray-500" strokeWidth={2.5} />
-                  </span>
-                </button>
-                <div className={`faq-body ${open === i ? 'open' : ''}`}>
-                  <div className="px-5 pb-5">
-                    <p className="text-sm text-gray-600 leading-relaxed">{f.a}</p>
-                  </div>
-                </div>
+    <Section id="faq" eyebrow="Frequently asked" title="Answers, before you ask.">
+      <div className="mx-auto max-w-3xl divide-y divide-white/8 overflow-hidden rounded-2xl border border-white/8 bg-white/[0.02]">
+        {faqs.map((f,i)=>{
+          const isOpen=open===i
+          return (
+            <button key={f.q} onClick={()=>setOpen(isOpen?null:i)} aria-expanded={isOpen}
+              className="block w-full px-5 py-5 text-left transition hover:bg-white/[0.02] sm:px-6">
+              <div className="flex items-start justify-between gap-4">
+                <span className="text-[15px] font-medium text-white">{f.q}</span>
+                <span className={`mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 transition-transform ${isOpen?'rotate-45':''}`}>
+                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden><path d="M5 1v8M1 5h8" stroke="white" strokeWidth="1.4" strokeLinecap="round"/></svg>
+                </span>
               </div>
-            ))}
-          </div>
-        </div>
+              <div className={`faq-body ${isOpen?'open':''}`}>
+                <div><p className="pt-3 text-[13.5px] leading-relaxed text-[var(--color-dim)]">{f.a}</p></div>
+              </div>
+            </button>
+          )
+        })}
       </div>
-    </section>
+      <p className="mx-auto mt-8 max-w-2xl text-center text-[12px] leading-relaxed text-[var(--color-mute)]">
+        Preventura provides health information for prevention and self-tracking purposes and does not replace medical advice, diagnosis or treatment.
+      </p>
+    </Section>
   )
 }
