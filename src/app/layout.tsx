@@ -6,14 +6,11 @@ const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata: Metadata = {
   title: 'DRYQ GmbH – Wasserschadensanierung, Leckortung & technische Trocknung',
-  description:
-    'DRYQ unterstützt Eigentümer, Hausverwaltungen und Gewerbekunden bei Wasserschäden mit Leckortung, technischer Trocknung, Rückbau und strukturierter Dokumentation.',
-  keywords:
-    'Wasserschadensanierung, Leckortung, technische Trocknung, Bautrocknung, Estrichdämmschichttrocknung, Wasserschaden Siegburg, Wasserschaden Bonn, Wasserschaden Köln, Rhein-Sieg-Kreis',
+  description: 'DRYQ unterstützt Eigentümer, Hausverwaltungen und Gewerbekunden bei Wasserschäden mit Leckortung, technischer Trocknung, Rückbau und strukturierter Dokumentation.',
+  keywords: 'Wasserschadensanierung, Leckortung, technische Trocknung, Bautrocknung, Estrichdämmschichttrocknung, Wasserschaden Siegburg, Wasserschaden Bonn, Wasserschaden Köln',
   openGraph: {
     title: 'DRYQ GmbH – Wasserschadensanierung, Leckortung & technische Trocknung',
-    description:
-      'DRYQ unterstützt Eigentümer, Hausverwaltungen und Gewerbekunden bei Wasserschäden.',
+    description: 'Professionelle Wasserschadensanierung im Rheinland.',
     type: 'website',
     locale: 'de_DE',
   },
