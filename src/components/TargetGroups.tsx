@@ -7,7 +7,7 @@ const groups = [
     headline: 'Schnelle Orientierung im Schadenfall.',
     text: 'Ein Wasserschaden ist stressig. DRYQ erklärt die nächsten Schritte verständlich, handelt schnell und kommuniziert klar – damit Sie wissen, was passiert und was als nächstes kommt.',
     points: ['Klare Erstberatung ohne Fachjargon', 'Schnelle Terminabstimmung', 'Transparente Kommunikation', 'Unterstützung bei Versicherungsabstimmung'],
-    grad: 'from-[#35D04F]/10 to-[#35D04F]/5',
+    bg: 'bg-[#35D04F]/10',
     border: 'border-[#35D04F]/20',
   },
   {
@@ -16,7 +16,7 @@ const groups = [
     headline: 'Planbare Abwicklung, saubere Dokumentation.',
     text: 'Verwaltungen benötigen verlässliche Partner: klare Termine, Mieterkommunikation, Protokolle und wenig Rückfragen. DRYQ liefert strukturierte Abwicklung und belastbare Unterlagen.',
     points: ['Koordination mit Mietern und Eigentümern', 'Messprotokoll und Fotodokumentation', 'Planbare Trocknungszeiten', 'Skalierbare Zusammenarbeit'],
-    grad: 'from-blue-500/10 to-blue-500/5',
+    bg: 'bg-blue-500/10',
     border: 'border-blue-500/20',
   },
   {
@@ -25,7 +25,7 @@ const groups = [
     headline: 'Schnelle Maßnahmen, geringe Ausfallzeit.',
     text: 'Jede Stunde zählt. DRYQ plant Trocknungsmaßnahmen so, dass Betriebsunterbrechungen minimiert werden. Schnelle Einsatzplanung, organisierte Umsetzung, klare Dokumentation.',
     points: ['Schnelle Einsatzplanung', 'Minimierung von Betriebsunterbrechungen', 'Angepasste Arbeitszeiten möglich', 'Saubere Leistungsabgrenzung'],
-    grad: 'from-amber-500/10 to-amber-500/5',
+    bg: 'bg-amber-500/10',
     border: 'border-amber-500/20',
   },
   {
@@ -34,7 +34,7 @@ const groups = [
     headline: 'Nachvollziehbare Messwerte und Leistungsabgrenzung.',
     text: 'Für Sachverständige und Regulierer: DRYQ dokumentiert Schadenaufnahme, Messwerte, Maßnahmen und Trocknungsverlauf so, dass eine übersichtliche Grundlage für die Regulierung entsteht.',
     points: ['Kalibrierte Feuchtemessungen', 'Nachvollziehbare Maßnahmenplanung', 'Stromverbrauchsmitteilung', 'Strukturierte Leistungsabgrenzung'],
-    grad: 'from-purple-500/10 to-purple-500/5',
+    bg: 'bg-purple-500/10',
     border: 'border-purple-500/20',
   },
 ]
@@ -49,8 +49,8 @@ export default function TargetGroups() {
           <p className="text-gray-600 leading-relaxed">Wasserschäden betreffen unterschiedliche Beteiligte mit unterschiedlichen Ansprüchen. DRYQ passt Kommunikation und Dokumentation an jede Zielgruppe an.</p>
         </div>
         <div className="grid md:grid-cols-2 gap-6">
-          {groups.map(({ Icon, label, headline, text, points, grad, border }) => (
-            <div key={label} className={`bg-linear-to-br ${grad} border ${border} rounded-2xl p-7 reveal`}>
+          {groups.map(({ Icon, label, headline, text, points, bg, border }) => (
+            <div key={label} className={`${bg} border ${border} rounded-2xl p-7 reveal`}>
               <div className="flex items-start gap-4 mb-5">
                 <div className="w-11 h-11 bg-white rounded-xl shadow-sm flex items-center justify-center flex-shrink-0">
                   <Icon size={20} className="text-[#101820]" strokeWidth={1.8} />
@@ -72,7 +72,7 @@ export default function TargetGroups() {
           ))}
         </div>
         <div className="mt-12 text-center reveal">
-          <a href="#kontakt" className="inline-flex items-center gap-2 bg-[#35D04F] hover:bg-[#28A83F] text-white font-bold px-8 py-4 rounded-xl text-sm transition-colors shadow-sm shadow-[#35D04F]/20">
+          <a href="#kontakt" className="inline-flex items-center gap-2 bg-[#35D04F] hover:bg-[#28A83F] text-white font-bold px-8 py-4 rounded-xl text-sm transition-colors">
             Schaden melden <ArrowRight size={14} />
           </a>
         </div>

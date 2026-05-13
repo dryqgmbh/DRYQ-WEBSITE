@@ -5,7 +5,10 @@ import { Phone, AlertTriangle, Clock, CheckCircle } from 'lucide-react'
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false)
-  const [form, setForm] = useState({ name:'', phone:'', email:'', address:'', damageType:'', role:'', insurance:'', message:'' })
+  const [form, setForm] = useState({
+    name: '', phone: '', email: '', address: '',
+    damageType: '', role: '', insurance: '', message: ''
+  })
   const set = (k: string, v: string) => setForm((p) => ({ ...p, [k]: v }))
 
   const handleSubmit = (e: FormEvent) => {
@@ -54,17 +57,17 @@ export default function ContactForm() {
                 <Clock size={13} /> Erreichbarkeit
               </div>
               <div className="space-y-2 text-sm">
-                {[['Mo – Fr', '08:00 – 18:00 Uhr'], ['Sa', 'Nach Vereinbarung'], ['Akuter Schadenfall', 'Per Anfrage']].map(([day, time]) => (
-                  <div key={day} className="flex justify-between">
+                {[['Mo – Fr', '08:00 – 18:00 Uhr', false], ['Sa', 'Nach Vereinbarung', false], ['Akuter Schadenfall', 'Per Anfrage', true]].map(([day, time, green]) => (
+                  <div key={String(day)} className="flex justify-between">
                     <span className="text-gray-600">{day}</span>
-                    <span className={`font-semibold ${day === 'Akuter Schadenfall' ? 'text-[#35D04F]' : 'text-[#101820]'}`}>{time}</span>
+                    <span className={`font-semibold ${green ? 'text-[#35D04F]' : 'text-[#101820]'}`}>{time}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right — form */}
+          {/* Form */}
           <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-8 reveal">
             {sent ? (
               <div className="flex flex-col items-center justify-center h-full text-center py-16">
@@ -75,8 +78,8 @@ export default function ContactForm() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
-                  <Field label="Name *" required><input required type="text" value={form.name} onChange={(e) => set('name', e.target.value)} className={iCls} placeholder="Vor- und Nachname" /></Field>
-                  <Field label="Telefon *" required><input required type="tel" value={form.phone} onChange={(e) => set('phone', e.target.value)} className={iCls} placeholder="+49 ..." /></Field>
+                  <Field label="Name *"><input required type="text" value={form.name} onChange={(e) => set('name', e.target.value)} className={iCls} placeholder="Vor- und Nachname" /></Field>
+                  <Field label="Telefon *"><input required type="tel" value={form.phone} onChange={(e) => set('phone', e.target.value)} className={iCls} placeholder="+49 ..." /></Field>
                 </div>
                 <Field label="E-Mail"><input type="email" value={form.email} onChange={(e) => set('email', e.target.value)} className={iCls} placeholder="ihre@email.de" /></Field>
                 <Field label="Adresse / Ort des Schadens"><input type="text" value={form.address} onChange={(e) => set('address', e.target.value)} className={iCls} placeholder="Straße, PLZ, Ort" /></Field>
@@ -84,21 +87,21 @@ export default function ContactForm() {
                   <Field label="Art des Schadens">
                     <select value={form.damageType} onChange={(e) => set('damageType', e.target.value)} className={iCls}>
                       <option value="">Bitte wählen</option>
-                      {['Rohrbruch','Leckage unbekannt','Hochwasser / Überflutung','Kondensat / Feuchtigkeit','Estrichfeuchtigkeit','Sonstiges'].map((o) => <option key={o}>{o}</option>)}
+                      {['Rohrbruch', 'Leckage unbekannt', 'Hochwasser / Überflutung', 'Kondensat / Feuchtigkeit', 'Estrichfeuchtigkeit', 'Sonstiges'].map((o) => <option key={o}>{o}</option>)}
                     </select>
                   </Field>
                   <Field label="Sie sind">
                     <select value={form.role} onChange={(e) => set('role', e.target.value)} className={iCls}>
                       <option value="">Bitte wählen</option>
-                      {['Eigentümer','Mieter','Hausverwaltung','Gewerbekunde','Versicherung / Sachverständiger'].map((o) => <option key={o}>{o}</option>)}
+                      {['Eigentümer', 'Mieter', 'Hausverwaltung', 'Gewerbekunde', 'Versicherung / Sachverständiger'].map((o) => <option key={o}>{o}</option>)}
                     </select>
                   </Field>
                 </div>
                 <Field label="Versicherung bereits informiert?">
                   <div className="flex gap-3 flex-wrap">
-                    {['Ja','Nein','Noch nicht'].map((o) => (
+                    {['Ja', 'Nein', 'Noch nicht'].map((o) => (
                       <label key={o} className={`flex items-center gap-2 cursor-pointer border rounded-xl px-4 py-2.5 text-sm transition-colors ${
-                        form.insurance === o ? 'border-[#35D04F] bg-[#35D04F]/5 text-[#35D04F] font-semibold' : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                        form.insurance === o ? 'border-[#35D04F] bg-[#35D04F]/5 text-[#35D04F] font-semibold' : 'border-gray-200 text-gray-600'
                       }`}>
                         <input type="radio" className="sr-only" checked={form.insurance === o} onChange={() => set('insurance', o)} />{o}
                       </label>
@@ -108,7 +111,7 @@ export default function ContactForm() {
                 <Field label="Nachricht">
                   <textarea rows={3} value={form.message} onChange={(e) => set('message', e.target.value)} className={`${iCls} resize-none`} placeholder="Kurze Beschreibung des Schadens, Fragen, etc." />
                 </Field>
-                <button type="submit" className="w-full bg-[#35D04F] hover:bg-[#28A83F] text-white font-bold py-4 rounded-xl text-sm transition-colors shadow-sm shadow-[#35D04F]/20">
+                <button type="submit" className="w-full bg-[#35D04F] hover:bg-[#28A83F] text-white font-bold py-4 rounded-xl text-sm transition-colors">
                   Erste Einschätzung anfordern
                 </button>
                 <p className="text-xs text-gray-400 text-center">Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.</p>
@@ -123,7 +126,7 @@ export default function ContactForm() {
 
 const iCls = 'w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#35D04F] focus:ring-1 focus:ring-[#35D04F]/30 transition-colors bg-white'
 
-function Field({ label, children, required }: { label: string; children: React.ReactNode; required?: boolean }) {
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
       <label className="block text-xs font-semibold text-gray-600 mb-1.5">{label}</label>
