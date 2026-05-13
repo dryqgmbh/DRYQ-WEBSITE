@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* ── Brand theme ── */
+@theme {
+  --color-green: #35D04F;
+  --color-green-dark: #28A83F;
+  --color-green-light: #E8F9EC;
+  --color-dark: #101820;
+  --color-anthracite: #20252B;
+  --color-muted: #667085;
+  --color-bg: #F6F8F7;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #fff;
+  color: #101820;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grid pattern for hero */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(53,208,79,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(53,208,79,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* FAQ accordion */
+.faq-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+.faq-body.open { max-height: 500px; }
+
+/* Before/After slider */
+.ba-slider { position: relative; overflow: hidden; cursor: col-resize; user-select: none; touch-action: none; }
+.ba-after { position: absolute; inset: 0; overflow: hidden; }
+.ba-handle { position: absolute; top: 0; bottom: 0; width: 3px; background: white; z-index: 20; transform: translateX(-50%); }
+.ba-handle-btn {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px; height: 44px;
+  background: white; border-radius: 50%;
+  box-shadow: 0 2px 20px rgba(0,0,0,.25);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Mobile CTA bar */
+.mobile-cta-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  z-index: 100; display: flex;
+  border-top: 2px solid #35D04F;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+@media (min-width: 768px) { .mobile-cta-bar { display: none; } }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #35D04F; border-radius: 3px; }
